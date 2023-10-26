@@ -1,0 +1,73 @@
+<style>
+
+    .navbar .nav-item a {
+        position: relative;
+        text-decoration: none;
+        color: #fff; /* Set text color */
+        transition: color 0.3s; /* Add a smooth color transition effect */
+    }
+
+    .navbar .nav-item a:hover {
+        color: #007bff; /* Change color on hover (adjust the color as needed) */
+    }
+
+    .navbar .nav-item a::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background: #00d0ff; /* Underline color (adjust as needed) */
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.3s; /* Add a smooth underline transition effect */
+    }
+
+    .navbar .nav-item a:hover::after {
+        transform: scaleX(1); /* Show the underline on hover */
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light" href="{% url 'home' %}">Mind Mingles</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav justify-content-center me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'About' %}">About</a>
+                </li>
+                {% if user.is_authenticated %}
+                
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'create_team' %}">Register Team</a>
+                </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'signup' %}">Sign Up</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'org_team' %}">Team</a>
+                </li>
+                {% if user.is_staff %}
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'admin:index' %}">Admin</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

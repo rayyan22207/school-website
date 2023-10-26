@@ -1,0 +1,21 @@
+{% include 'base.html' %}
+{% block content %}
+
+<div class='card bg-transparent text-light col-8 border border-info' style="margin-left:15%;">
+    <form method="post">
+        {% csrf_token %}
+        <div class="card-body">
+            <div class="form-group mb-4">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group mb-4">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <button class="btn btn-info" type="submit" style="margin-left:43%;">Login</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
